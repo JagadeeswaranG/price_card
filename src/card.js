@@ -1,3 +1,7 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+
 function Card(props) {
   return (
     <div className="col-lg-4">
@@ -13,30 +17,30 @@ function Card(props) {
           <hr />
           <ul className="fa-ul">
             {props.card.feature.map((item) => {
-              return (
-                <li>
-                  <div className="line">
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    <b>{item.line2}</b>
-                  </div>
-                  <div className="line">
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    {item.line}
-                  </div>
-                  <div className="line1 text-muted">
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    {item.line1}
-                  </div>
-                </li>
-              );
+              {
+                if (item.isthere == true) {
+                  return (
+                    <li>
+                      <span className="fa-li">
+                        <FontAwesomeIcon icon={faCheck} />
+                      </span>
+                      <strong>{item.line}</strong>
+                    </li>
+                  );
+                } else {
+                  return (
+                    <li>
+                      <span className="fa-li text-muted">
+                        <FontAwesomeIcon icon={faXmark} />
+                      </span>
+                      {item.line1}
+                    </li>
+                  );
+                }
+              }
             })}
           </ul>
+
           <div className="d-grid">
             <a href="#" className="btn btn-primary text-uppercase">
               Button
